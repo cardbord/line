@@ -17,6 +17,9 @@ def bin_to_int(binary:str):
 
 def between(line:str,char):
     char1 = line.find(char)
+    if char1==-1:
+        return ''
+
     return line[char1+1:line.find(char,char1+1)]
 
 
@@ -77,6 +80,13 @@ while l < len(d):
         case '>/':
             cnum = bin_to_int(condition_oper)
             cond = (acc >= cnum)
+        case '\\<':
+            cnum = bin_to_int(condition_oper)
+            cond = (acc <= cnum)
+        case '---':
+            cnum = bin_to_int(condition_oper)
+            cond = (acc==cnum)
+            
     
     
     if cond:
@@ -86,7 +96,14 @@ while l < len(d):
             case '-': #sub
                 acc-=num
             case '<<': #out
-                print(acc)
+                print(operand)
+                if operand=='':
+                    print(acc,end='',sep='')
+                else:
+                    print(chr(num),end='',sep='')
+            case '<>': #newline
+                print('',end='\n',sep='')
+                
             case '<': #sta
                 memory[num]=acc
             case '>': #lda
