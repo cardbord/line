@@ -1,0 +1,23 @@
+_ operand
+= opcode
+
+
+| bracket
+
+/ 0 
+\ 1
+
+ADD --
+SUB -
+STA < 
+LDA >
+MULT \\
+DIV //
+OUT <<
+IN >>
+GOTO ->
+
+
+| CONDITION |
+
+/
