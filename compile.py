@@ -102,7 +102,7 @@ while l < len(d):
                 else:
                     print(chr(num),end='',sep='')
             case '<>': #newline
-                print('',end='\n',sep='')
+                print('\n',end='',sep='')
                 
             case '<': #sta
                 memory[num]=acc
