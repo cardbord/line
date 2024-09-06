@@ -1,11 +1,14 @@
-f = 'test.ln'
+f = 'mult.ln'
 #f = input("Enter filename")
 d=[]
-
+import time
 memory = {}
+
+opr_type = '/\\'
 
 global acc
 acc = 0
+return_on_next=False
 
 def bin_to_int(binary:str):
     temp=0
@@ -26,9 +29,12 @@ def between(line:str,char):
 with open(f,'r') as a:
     d=a.readlines()
 
+
 l=0
 while l < len(d):
-    
+    time.sleep(0.5)
+    print(l, memory, acc)
+    neg_cond = False
     line = d[l]
     line.strip()
     
@@ -41,7 +47,16 @@ while l < len(d):
     condition = between(line,'|')
     
     condition_opc = between(condition,"'")
-    condition_oper = between(condition,"=")
+    condition_oper = between(condition,'"')
+    
+    typer= between(line,'+')
+    
+    if typer!='':
+        print(typer)
+    
+    if typer != '':
+        opr_type = typer
+        print(opr_type)
     
     condition_oper = list(condition_oper)
     if condition_oper!='':
@@ -67,42 +82,67 @@ while l < len(d):
         
         num = bin_to_int(operand)
     
+    
+    
+    
     cond = True
+    if condition_opc.startswith('¬'):
+        neg_cond = True
+        condition_opc.replace('¬','')
     match condition_opc:
         case '/': #brz
             cond = (acc == 0)
         case '\\': #brp
             cond = (acc > 0)
-        case '¬/': #neg brz
-            cond = not (acc == 0)
-        case '¬\\': #neg brp
-            cond = not (acc > 0)
-        case '>/':
+        case '>/': #br if acc >= num
             cnum = bin_to_int(condition_oper)
             cond = (acc >= cnum)
-        case '\\<':
+        case '\\<': #br if acc <= num
             cnum = bin_to_int(condition_oper)
             cond = (acc <= cnum)
-        case '---':
+        case '---': #br if acc == num
             cnum = bin_to_int(condition_oper)
             cond = (acc==cnum)
-            
+    if neg_cond:
+        cond = not cond
     
     
     if cond:
+        
         match opcode:
             case '--': #add
-                acc+=num
+                
+                if opr_type=='¬':
+                    acc+=num
+                elif opr_type=='>':
+                    acc+=memory[num]
+                    
             case '-': #sub
-                acc-=num
+                if opr_type=='¬':
+                    acc-=num
+                elif opr_type=='>':
+                    acc-=memory[num]
+                
+                
             case '<<': #out
-                print(operand)
-                if operand=='':
-                    print(acc,end='',sep='')
+                if return_on_next:    
+                    if opr_type=='/\\':
+                        print('\n'+str(acc),end='',sep='')
+                    elif opr_type=='¬':
+                        if num!='':
+                            print('\n'+str(chr(num % 256)),end='',sep='')
+                            
+                    else:
+                        print('\n'+str(acc),end='',sep='')
+                    return_on_next=False
                 else:
-                    print(chr(num),end='',sep='')
-            case '<>': #newline
-                print('\n',end='',sep='')
+                    if operand=='':
+                        print(acc,end='',sep='')
+                    else:
+                        print(chr(num % 256),end='',sep='')
+                    
+            case '<>': #return on next
+                return_on_next = True
                 
             case '<': #sta
                 memory[num]=acc
@@ -111,6 +151,11 @@ while l < len(d):
             case '->': #goto
                 l=num-1
                 
+            case '>>': #in
+                acc = int(input(""))
+                
+            
+            
             
             
     l+=1                

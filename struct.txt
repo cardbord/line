@@ -18,6 +18,13 @@ IN >>
 GOTO ->
 
 
-| CONDITION |
+| condition
 
-/
+'/' brz
+'\' brp
+'===' =
+
+types
++/\+ int
++¬+ char
++>+ ram
