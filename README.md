@@ -11,7 +11,7 @@ Here's a simple hello world program, written in line.
 
 ```
 +¬+ setting the current datatype to char
-_<<_=/\//\///= underscores represent opcodes, equals represent values...
+_<<_=/\//\///= underscores represent opcodes, equals represent operands...
 _<<_=/\\//\/\=
 _<<_=/\\/\\//=
 _<<_=/\\/\\//=
