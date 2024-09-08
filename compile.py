@@ -1,8 +1,16 @@
-f = 'mult.ln'
-#f = input("Enter filename")
-d=[]
+import sys
 import time
+import os
+import random
+f = sys.argv[1]
+debug = False
+if len(sys.argv) > 2:
+    debug = True
+d=[]
+
 memory = {}
+
+
 
 opr_type = '/\\'
 
@@ -32,8 +40,7 @@ with open(f,'r') as a:
 
 l=0
 while l < len(d):
-    time.sleep(0.5)
-    print(l, memory, acc)
+    
     neg_cond = False
     line = d[l]
     line.strip()
@@ -51,12 +58,8 @@ while l < len(d):
     
     typer= between(line,'+')
     
-    if typer!='':
-        print(typer)
     
-    if typer != '':
-        opr_type = typer
-        print(opr_type)
+        
     
     condition_oper = list(condition_oper)
     if condition_oper!='':
@@ -86,39 +89,50 @@ while l < len(d):
     
     
     cond = True
-    if condition_opc.startswith('¬'):
+    if ('¬') in condition_opc:
         neg_cond = True
-        condition_opc.replace('¬','')
+        
+        condition_opc=condition_opc[2:]
+    if opr_type == '>':
+        condition_oper = memory[bin_to_int(condition_oper)]
+    else:
+        condition_oper = bin_to_int(condition_oper)
     match condition_opc:
         case '/': #brz
             cond = (acc == 0)
         case '\\': #brp
             cond = (acc > 0)
         case '>/': #br if acc >= num
-            cnum = bin_to_int(condition_oper)
+            cnum = condition_oper
             cond = (acc >= cnum)
         case '\\<': #br if acc <= num
-            cnum = bin_to_int(condition_oper)
+            cnum = condition_oper
             cond = (acc <= cnum)
         case '---': #br if acc == num
-            cnum = bin_to_int(condition_oper)
+            
+            cnum = condition_oper
             cond = (acc==cnum)
+            
     if neg_cond:
         cond = not cond
     
-    
+    if typer != '':
+        opr_type = typer
+        if debug:
+            print(f'CONDITION CHANGED TO {opr_type}')
+        
     if cond:
         
         match opcode:
             case '--': #add
                 
-                if opr_type=='¬':
+                if opr_type=='/\\':
                     acc+=num
                 elif opr_type=='>':
                     acc+=memory[num]
                     
             case '-': #sub
-                if opr_type=='¬':
+                if opr_type=='/\\':
                     acc-=num
                 elif opr_type=='>':
                     acc-=memory[num]
@@ -128,7 +142,7 @@ while l < len(d):
                 if return_on_next:    
                     if opr_type=='/\\':
                         print('\n'+str(acc),end='',sep='')
-                    elif opr_type=='¬':
+                    elif '¬' in opr_type:
                         if num!='':
                             print('\n'+str(chr(num % 256)),end='',sep='')
                             
@@ -142,6 +156,8 @@ while l < len(d):
                         print(chr(num % 256),end='',sep='')
                     
             case '<>': #return on next
+                if return_on_next==True:
+                    print('')
                 return_on_next = True
                 
             case '<': #sta
@@ -149,15 +165,28 @@ while l < len(d):
             case '>': #lda
                 acc=memory[num]
             case '->': #goto
-                l=num-1
+                if opr_type=='/\\':
+                    l=num-1
+                elif opr_type=='>':
+                    l=memory[num]-1
+                else:
+                    l=num-1
                 
             case '>>': #in
                 acc = int(input(""))
                 
-            
-            
-            
-            
-    l+=1                
+            case '<-/->': #clearscreen
+                os.system('cls')
 
+            case '/->-/': #random
+                acc = random.randrange(num)
                 
+            
+            
+            
+    l+=1
+
+    if debug:
+        time.sleep(0.1)
+        print(l, memory, acc, opcode, operand, condition_oper, cond, opr_type)
+        print('')
