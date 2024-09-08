@@ -93,7 +93,8 @@ while l < len(d):
         neg_cond = True
         
         condition_opc=condition_opc[2:]
-    if opr_type == '>':
+    
+    if opr_type == '>' and condition_oper!='':
         condition_oper = memory[bin_to_int(condition_oper)]
     else:
         condition_oper = bin_to_int(condition_oper)
