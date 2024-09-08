@@ -174,7 +174,12 @@ while l < len(d):
                     l=num-1
                 
             case '>>': #in
-                acc = int(input(""))
+                value = input("")
+                if value.isnumeric():
+                    acc=int(value)
+                else:
+                    acc=ord(value)
+                
                 
             case '<-/->': #clearscreen
                 os.system('cls')
