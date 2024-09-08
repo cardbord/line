@@ -1,8 +1,6 @@
-_ operand
-= opcode
-
-
-| bracket
+_ opcode
+= operand
+| condition
 
 / 0 
 \ 1
@@ -11,18 +9,21 @@ ADD --
 SUB -
 STA < 
 LDA >
-MULT \\
-DIV //
 OUT <<
 IN >>
 GOTO ->
+RETURN <>
+RANDOM /->-/
+CLS <-/->
 
-
-| condition
 
 '/' brz
 '\' brp
-'===' =
+'---' =
+'>/' acc >= x
+'\<' acc <= x
+(¬ for logical NOT)
+(" conditional opcode)
 
 types
 +/\+ int
