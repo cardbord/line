@@ -1,0 +1,20 @@
+_<_=/\\= store in 11
+_>>_ input
+_<_=/\= store in 01
+_>>_ input
+_<_=/\/= store in 10
+
++>+ datatype RAM
+_>_=/\\= load 11
+_--_=/\= add 01
+_<_=/\\= store in 11
+_>_=/\/= load 10
++/\+ datatype INT
+_-_=/\= minus 1
+_<_=/\/= store 10
+
+|'¬---'"/"|_->_=/\\/= goto 110 IF NOT acc is 0 
+
+_>_=/\\= load 11
+_<>_ newline
+_<<_ output
