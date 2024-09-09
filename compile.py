@@ -157,11 +157,11 @@ while l < len(d):
                         print(str(acc),end='',sep='')
                     elif '¬' in opr_type:
                         
-                        if num!=0:
+                        if operand!='':
                             print(str(chr(num % 256)),end='',sep='')
                         else:
                             
-                            print(str(chr(memory[acc] % 256)),end='',sep='')
+                            print(str(chr(acc % 256)),end='',sep='')
                             
                     else:
                         print(str(acc),end='',sep='')
@@ -174,7 +174,10 @@ while l < len(d):
             case '<': #sta
                 memory[num]=acc
             case '>': #lda
-                acc=memory[num]
+                if operand!='':
+                    acc=memory[num]
+                else:
+                    acc=memory[acc]
             case '->': #goto
                 if opr_type=='/\\':
                     l=num-1
@@ -189,9 +192,16 @@ while l < len(d):
                     acc=int(value)
                     
                 elif len(list(value)) > 1:
+                    found = False
+                    i = 0
+                    while not found:
+                        if memory.get(i) == None:
+                            found = True
+                        else:
+                            i+=100
                     value=''.join([value[i] for i in range(len(value)-1,-1,-1)])
                     for char in range(len(value)):
-                        memory[char] = ord(value[char])
+                        memory[char+i] = ord(value[char])
                     acc=len(value)
                 
             case '<-/->': #clearscreen
