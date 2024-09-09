@@ -146,15 +146,25 @@ while l < len(d):
                     elif '¬' in opr_type:
                         if num!='':
                             print('\n'+str(chr(num % 256)),end='',sep='')
+                        else:
+                            print('\n'+str(chr(memory[acc] % 256)),end='',sep='')
                             
                     else:
                         print('\n'+str(acc),end='',sep='')
                     return_on_next=False
                 else:
-                    if operand=='':
-                        print(acc,end='',sep='')
+                    if opr_type=='/\\':
+                        print(str(acc),end='',sep='')
+                    elif '¬' in opr_type:
+                        
+                        if num!=0:
+                            print(str(chr(num % 256)),end='',sep='')
+                        else:
+                            
+                            print(str(chr(memory[acc] % 256)),end='',sep='')
+                            
                     else:
-                        print(chr(num % 256),end='',sep='')
+                        print(str(acc),end='',sep='')
                     
             case '<>': #return on next
                 if return_on_next==True:
@@ -177,9 +187,12 @@ while l < len(d):
                 value = input("")
                 if value.isnumeric():
                     acc=int(value)
-                else:
-                    acc=ord(value)
-                
+                    
+                elif len(list(value)) > 1:
+                    value=''.join([value[i] for i in range(len(value)-1,-1,-1)])
+                    for char in range(len(value)):
+                        memory[char] = ord(value[char])
+                    acc=len(value)
                 
             case '<-/->': #clearscreen
                 os.system('cls')
