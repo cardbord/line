@@ -39,183 +39,187 @@ with open(f,'r') as a:
 
 
 l=0
-while l < len(d):
-    
-    neg_cond = False
-    line = d[l]
-    line.strip()
-    
-    line.replace(' ','')
-    
-    
-    
-    opcode = between(line,'_')
-    operand = between(line,'=')
-    condition = between(line,'|')
-    
-    condition_opc = between(condition,"'")
-    condition_oper = between(condition,'"')
-    
-    typer= between(line,'+')
-    
-    
+try:
+    while l < len(d):
         
-    
-    condition_oper = list(condition_oper)
-    if condition_oper!='':
-        for char in range(len((condition_oper))):
-            if condition_oper[char] == '/':
-                condition_oper[char] = '0'
-            elif condition_oper[char] == "\\":
-                condition_oper[char] = '1'
+        neg_cond = False
+        line = d[l]
+        line.strip()
         
-        condition_oper = ''.join(condition_oper)
-    
-    
-    
-    operand = list(operand)
-    if operand!='':
-        for char in range(len((operand))):
-            if operand[char] == '/':
-                operand[char] = '0'
-            elif operand[char] == "\\":
-                operand[char] = '1'
+        line.replace(' ','')
         
-        operand = ''.join(operand)
         
-        num = bin_to_int(operand)
-    
-    
-    
-    
-    cond = True
-    if ('¬') in condition_opc:
-        neg_cond = True
         
-        condition_opc=condition_opc[2:]
-    
-    if opr_type == '>' and condition_oper!='':
-        condition_oper = memory[bin_to_int(condition_oper)]
-    else:
-        condition_oper = bin_to_int(condition_oper)
-    match condition_opc:
-        case '/': #brz
-            cond = (acc == 0)
-        case '\\': #brp
-            cond = (acc > 0)
-        case '>/': #br if acc >= num
-            cnum = condition_oper
-            cond = (acc >= cnum)
-        case '\\<': #br if acc <= num
-            cnum = condition_oper
-            cond = (acc <= cnum)
-        case '---': #br if acc == num
+        opcode = between(line,'_')
+        operand = between(line,'=')
+        condition = between(line,'|')
+        
+        condition_opc = between(condition,"'")
+        condition_oper = between(condition,'"')
+        
+        typer= between(line,'+')
+        
+        
             
-            cnum = condition_oper
-            cond = (acc==cnum)
+        
+        condition_oper = list(condition_oper)
+        if condition_oper!='':
+            for char in range(len((condition_oper))):
+                if condition_oper[char] == '/':
+                    condition_oper[char] = '0'
+                elif condition_oper[char] == "\\":
+                    condition_oper[char] = '1'
             
-    if neg_cond:
-        cond = not cond
-    
-    if typer != '':
-        opr_type = typer
-        if debug:
-            print(f'CONDITION CHANGED TO {opr_type}')
+            condition_oper = ''.join(condition_oper)
         
-    if cond:
         
-        match opcode:
-            case '--': #add
+        
+        operand = list(operand)
+        if operand!='':
+            for char in range(len((operand))):
+                if operand[char] == '/':
+                    operand[char] = '0'
+                elif operand[char] == "\\":
+                    operand[char] = '1'
+            
+            operand = ''.join(operand)
+            
+            num = bin_to_int(operand)
+        
+        
+        
+        
+        cond = True
+        if ('¬') in condition_opc:
+            neg_cond = True
+            
+            condition_opc=condition_opc[2:]
+        
+        if opr_type == '>' and condition_oper!='':
+            condition_oper = memory[bin_to_int(condition_oper)]
+        else:
+            condition_oper = bin_to_int(condition_oper)
+        match condition_opc:
+            case '/': #brz
+                cond = (acc == 0)
+            case '\\': #brp
+                cond = (acc > 0)
+            case '>/': #br if acc >= num
+                cnum = condition_oper
+                cond = (acc >= cnum)
+            case '\\<': #br if acc <= num
+                cnum = condition_oper
+                cond = (acc <= cnum)
+            case '---': #br if acc == num
                 
-                if opr_type=='/\\':
-                    acc+=num
-                elif opr_type=='>':
-                    acc+=memory[num]
+                cnum = condition_oper
+                cond = (acc==cnum)
+                
+        if neg_cond:
+            cond = not cond
+        
+        if typer != '':
+            opr_type = typer
+            if debug:
+                print(f'CONDITION CHANGED TO {opr_type}')
+            
+        if cond:
+            
+            match opcode:
+                case '--': #add
                     
-            case '-': #sub
-                if opr_type=='/\\':
-                    acc-=num
-                elif opr_type=='>':
-                    acc-=memory[num]
-                
-                
-            case '<<': #out
-                if return_on_next:    
                     if opr_type=='/\\':
-                        print('\n'+str(acc),end='',sep='')
-                    elif '¬' in opr_type:
-                        if num!='':
-                            print('\n'+str(chr(num % 256)),end='',sep='')
-                        else:
-                            print('\n'+str(chr(memory[acc] % 256)),end='',sep='')
-                            
-                    else:
-                        print('\n'+str(acc),end='',sep='')
-                    return_on_next=False
-                else:
-                    if opr_type=='/\\':
-                        print(str(acc),end='',sep='')
-                    elif '¬' in opr_type:
+                        acc+=num
+                    elif opr_type=='>':
+                        acc+=memory[num]
                         
-                        if operand!='':
-                            print(str(chr(num % 256)),end='',sep='')
+                case '-': #sub
+                    if opr_type=='/\\':
+                        acc-=num
+                    elif opr_type=='>':
+                        acc-=memory[num]
+                    
+                    
+                case '<<': #out
+                    if return_on_next:    
+                        if opr_type=='/\\':
+                            print('\n'+str(acc),end='',sep='')
+                        elif '¬' in opr_type:
+                            if num!='':
+                                print('\n'+str(chr(num % 256)),end='',sep='')
+                            else:
+                                print('\n'+str(chr(memory[acc] % 256)),end='',sep='')
+                                
                         else:
-                            
-                            print(str(chr(acc % 256)),end='',sep='')
-                            
+                            print('\n'+str(acc),end='',sep='')
+                        return_on_next=False
                     else:
-                        print(str(acc),end='',sep='')
-                    
-            case '<>': #return on next
-                if return_on_next==True:
-                    print('')
-                return_on_next = True
-                
-            case '<': #sta
-                memory[num]=acc
-            case '>': #lda
-                if operand!='':
-                    acc=memory[num]
-                else:
-                    acc=memory[acc]
-            case '->': #goto
-                if opr_type=='/\\':
-                    l=num-1
-                elif opr_type=='>':
-                    l=memory[num]-1
-                else:
-                    l=num-1
-                
-            case '>>': #in
-                value = input("")
-                if value.isnumeric():
-                    acc=int(value)
-                    
-                elif len(list(value)) > 1:
-                    found = False
-                    i = 0
-                    while not found:
-                        if memory.get(i) == None:
-                            found = True
+                        if opr_type=='/\\':
+                            print(str(acc),end='',sep='')
+                        elif '¬' in opr_type:
+                            
+                            if operand!='':
+                                print(str(chr(num % 256)),end='',sep='')
+                            else:
+                                
+                                print(str(chr(acc % 256)),end='',sep='')
+                                
                         else:
-                            i+=100
-                    value=''.join([value[i] for i in range(len(value)-1,-1,-1)])
-                    for char in range(len(value)):
-                        memory[char+i] = ord(value[char])
-                    acc=len(value)
-                
-            case '<-/->': #clearscreen
-                os.system('cls')
+                            print(str(acc),end='',sep='')
+                        
+                case '<>': #return on next
+                    if return_on_next==True:
+                        print('')
+                    return_on_next = True
+                    
+                case '<': #sta
+                    memory[num]=acc
+                case '>': #lda
+                    if operand!='':
+                        acc=memory[num]
+                    else:
+                        acc=memory[acc]
+                case '->': #goto
+                    if opr_type=='/\\':
+                        l=num-1
+                    elif opr_type=='>':
+                        l=memory[num]-1
+                    else:
+                        l=num-1
+                    
+                case '>>': #in
+                    value = input("")
+                    if value.isnumeric():
+                        acc=int(value)
+                        
+                    elif len(list(value)) > 1:
+                        found = False
+                        i = 0
+                        while not found:
+                            if memory.get(i) == None:
+                                found = True
+                            else:
+                                i+=100
+                        value=''.join([value[i] for i in range(len(value)-1,-1,-1)])
+                        for char in range(len(value)):
+                            memory[char+i] = ord(value[char])
+                        acc=len(value)
+                    
+                case '<-/->': #clearscreen
+                    os.system('cls')
 
-            case '/->-/': #random
-                acc = random.randrange(num)
+                case '/->-/': #random
+                    acc = random.randrange(num)
+                    
                 
-            
-            
-            
-    l+=1
+                
+                
+        l+=1
 
-    if debug:
-        time.sleep(0.1)
-        print(l, memory, acc, opcode, operand, condition_oper, cond, opr_type)
-        print('')
+        if debug:
+            time.sleep(0.1)
+            print(l, memory, acc, opcode, operand, condition_oper, cond, opr_type)
+            print('')
+            
+except Exception as e:
+    print(f'error raised in line {l}, {e}')
