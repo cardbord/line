@@ -1,0 +1,78 @@
+_<_=\=
+_<_=/\=
+_--_=/\\=
+_<_=/= player height y
+_<_=\/\/= player pos x
+_<>_
+
+DRAW WHOLE THING FUNCTION
+_>_=\= set counter to zero
++>+ set ram
+_-_=\=
++/\+
+_<_=\= store counter
+
+
+
+_>_=\= load counter
+_--_=/\= add one to counter
+_<_=\= store counter
+
+_<>_
+_>_=\=
+|'¬---'"/\\\\"|_->_=/\\\//= goto line drawer 
+_->_=/\///\\/= goto new line
+
+
+
+LINE DRAWER FUNCTION
+_<_=/\\\\\\\\\\\/=
++>+
+_-_=/\\\\\\\\\\\/=
+_<_=\/\\= init location minus five
++/\+
+
+
+
+
+
+_>_=\/\\= load counter
+
+_--_=/\= add one to counter
++/\+ set int
+_<_=\/\\= store counter
+
+
+|'¬---'"/\\\\\"|_->_=/\\///\= goto thing drawer if counter still in range
+_->_=/\////= goto draw whole thing
+
+
+THING DRAWER
+_>_=\/\\= load counter
++>+ 
+|'¬---'"\/\/"|+/\+_->_=/\\\\\/= goto character drawer
+_>_=\=+>+ load line counter
+|'¬---'"/"|+/\+_->_=/\\\\\/= goto character drawer
+
++¬+
+_<<_=/\//////=
++/\+
+_->_=/\//\//= go back to LINE DRAWER FUNCTION
+
+
+CHARACTER DRAWER
++¬+
+_<<_=//\/\\/\=
++/\+
+_->_=/\//\//= go back to LINE DRAWER FUNCTION
+
+
+TAKE INPUT
+_<>_
+_>>_
+_<_=\/\/=
+_>>_
+_<_=/=
+
+
+_->_=/\///= goto new line
