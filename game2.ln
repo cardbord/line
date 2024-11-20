@@ -3,15 +3,15 @@ _<_=/\=
 _--_=/\\=
 _<_=/= player height y
 _<_=\/\/= player pos x
-_<>_
-
+_--_=/\\////\=
+_<_=/\\\\\/\///=
 DRAW WHOLE THING FUNCTION
 _>_=\= set counter to zero
 +>+ set ram
 _-_=\=
 +/\+
 _<_=\= store counter
-
+_<-/->_
 
 
 _>_=\= load counter
@@ -71,8 +71,13 @@ TAKE INPUT
 _<>_
 _>>_
 _<_=\/\/=
+
+
 _>>_
 _<_=/=
+
+
+
 
 
 _->_=/\///= goto new line

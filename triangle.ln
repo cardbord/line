@@ -1,0 +1,52 @@
+INITS
+_--_=/\//\/\\\= add dash
++¬+ set ascii
+_<_=/= set a counter at memo zero
+_<_=/\= set a counter at one
+_<_=/\/= set a counter at two
+_<_=/\\= set a counter at three
+_<_=/\//=
+_<_=/\/\=
+_<_=/\\/=
+
+
++/\+
+_-_=/\//\/\\\=
+_<_=/\\\=
+_--_=/\//\/\\\=
++¬+
+
+_<_=/\///=
+_<_=/\//\=
+_<_=/\/\/=
+_<_=/\/\\=
+_<_=/\\//=
+_<_=/\\/\=
+
+
+
+
+
++/\+
+_>_=/=
+set up to thirteen
+_<_=/\\//\//= store counters at 100, 101, USE THESE AS L1, L2 COUNTERS
+_<_=/\\//\/\=
+
+RULES
+FOR EVERY PIPELINE,
+    THE TWO SIDE PIPELINES ARE FILLED
+    PRINT PIPELINES 
+    REPEAT FOREVER
+
+
+
+_>_=/\\//\//=
+_--_=/\=
+_<_=/\\//\//=
+_<<_
++¬+
+_<<_
+_<>_
++/\+
+|'¬---'"/\/\\"|_->_=/\\\//=
