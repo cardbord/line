@@ -173,12 +173,20 @@ try:
                     return_on_next = True
                     
                 case '<': #sta
-                    memory[num]=acc
-                case '>': #lda
-                    if operand!='':
-                        acc=memory[num]
+                    if opr_type == "'":
+                        memory[acc] = num
                     else:
-                        acc=memory[acc]
+                        memory[num]=acc
+                case '>': #lda
+                    if opr_type == "'":
+                        acc = num
+                    else:
+                        if operand!='':
+                            acc=memory[num]
+                        
+                        else:
+                            acc=memory[acc]
+                        
                 case '->': #goto
                     if opr_type=='/\\':
                         l=num-1
@@ -217,7 +225,7 @@ try:
         l+=1
 
         if debug:
-            time.sleep(0.1)
+            
             print(l, memory, acc, opcode, operand, condition_oper, cond, opr_type)
             print('')
             

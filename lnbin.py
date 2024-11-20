@@ -1,5 +1,5 @@
 import sys
-
+from pyperclip import copy
 a = sys.argv
 
 def conv_c(num:int):
@@ -8,7 +8,7 @@ def conv_c(num:int):
     b=b.replace('0','/')
     b=b.replace('1','\\')
     print(b)
-    
+    copy(b)
 
 for i in a:
     if i.isnumeric():
