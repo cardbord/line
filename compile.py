@@ -175,8 +175,12 @@ try:
                 case '<': #sta
                     if opr_type == "'":
                         memory[acc] = num
+                    elif opr_type == "'//": #indirect technique
+                        memory[acc] = memory[num]
                     else:
                         memory[num]=acc
+                    
+                                            
                 case '>': #lda
                     if opr_type == "'":
                         acc = num
