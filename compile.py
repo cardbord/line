@@ -153,6 +153,10 @@ try:
                         else:
                             print('\n'+str(acc),end='',sep='')
                         return_on_next=False
+
+                    
+                        
+
                     else:
                         if opr_type=='/\\':
                             print(str(acc),end='',sep='')
@@ -166,6 +170,12 @@ try:
                                 
                         else:
                             print(str(acc),end='',sep='')
+
+
+                    if debug:
+                        print(l, memory, acc, opcode, operand, condition_oper, cond, opr_type)
+                        print('')
+                        time.sleep(5)
                         
                 case '<>': #return on next
                     if return_on_next==True:
@@ -232,6 +242,8 @@ try:
             
             print(l, memory, acc, opcode, operand, condition_oper, cond, opr_type)
             print('')
+
+        
             
 except Exception as e:
     print(f'error raised in line {l}, {e}')
