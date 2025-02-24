@@ -53,7 +53,7 @@ _->_=/\///\\= GOTO LNBIN 35
 
 
 
-_--_=/\\//\\= ADD 51 TO REACH 200 TOTAL
+_--_=/\\//\/= ADD 50 TO REACH 200 TOTAL
 _<_=/\/\\\/\\\/\=
 
 
@@ -74,7 +74,7 @@ ONCE ARRS ARE FORMED
 
 
 CREATE COUNTER UP TO N-4 FOR ARR1
-ITERATE X THROUGH RANGE N0 TO N146
+ITERATE X THROUGH RANGE N0 TO N147
 CREATE POINTERS I J K
 DEFINED AS
 I IS X
@@ -87,7 +87,7 @@ ELSE NEXT X
 RE-ZERO ARR1
 
 CREATE COUNTER UP TO N(+200)-4 FOR ARR2
-ITERATE X THROUGH RANGE N200 TO N346
+ITERATE X THROUGH RANGE N200 TO N347
 CREATE POINTERS I J K
 DEFINED AS
 I IS X
@@ -96,4 +96,88 @@ K IS X ADD 2
 TEST I AND K EQUIVALENCY
     THEN IF J IS A DASH PLACE STAR AT ARR1 J POS
 ELSE NEXT X
+
+_>_=/\\\\\/\\/\=
+_-_=/\=
+_<_=/\/\\\/\\\\/=
+
+
+
+
+
+
+
+
+
+_>_=/\/\\\/\\\\/= LOAD X
+_--_=/\=
+_<_=/\/\\\/\\\\/= STORE X
++/\+
+|'---'"/\//\/\//"|_->_=/\//\/\\/= GOTO END OF LOOP
+
+_<_=/\\\////\//=
+
+_>_
+_<_=/\\\///\//\= STORES VALUE OF I AT 905
+_>_=/\\\////\//=
+_--_=/\=
+_<_=/\\\////\/\=
+_--_=/\=
+_<_=/\\\////\\/=
+
+_>_=/\\\////\\/= LOAD POINTER AT K
+_>_ LOAD VALUE AT POINTER
++>+
+|'---'"/\\\///\//\"|+/\+_->_=/\\/\\\/= GOTO START IF J a
+
+_>_=/\\\////\/\= LOAD VALUE AT J
+_>_ LOAD VALUE AT POINTER
+|'¬---'"/\/\\/\"|_->_=/\\/\\\/= GOTO START IF J IS NOT A DASH
+
+_>_=/\\\////\/\=
+_--_=/\\//\///= ADDS 200 TO POINTER TO BE STORED IN SECOND ARRAY
++'+
+_<_=/\/\/\/= STORES IN SECOND ARRAY
++/\+
+
+_->_=/\\/\\\/=
+
+
+
+
+
+
+
+
+
+
+
+_>_=/\\\\\/\\/\=
+_--_=/\\//\///=
+_<_=/\/\\\/\\\\/=
+
+
+
+_>_=/\/\\\/\\\\/=
+|'---'"/\/\/\\\\/"|_->_=/\/\/\\\\=
+_>_
++¬+
+_<<_
++/\+
+_>_=/\/\\\/\\\\/=
+_--_=/\=
+_<_=/\/\\\/\\\\/=
+_->_=/\//\\\\\=
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -15,7 +15,7 @@ print(''.join([_ for _ in a]))
 #here so far...
 
 while 1:
-    for x in range(0,size-4):
+    for x in range(0,size-3):
         c = a[x:x+3]
         
         d = c[0]
@@ -38,7 +38,7 @@ while 1:
         a.append('-')  
         
         
-    for x in range(0,size-4):
+    for x in range(0,size-3):
         c = b[x:x+3]
         d = c[0]
         dd = x
