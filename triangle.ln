@@ -24,37 +24,37 @@ _-_=/\/\/\/= take star ascii
 needs to be 150 long
 _<_=/\/\\\/\\\//= store 0 at 1500 lnbin
 
-ARR1 RANGE 0 TO 149
-ARR2 RANGE 200 TO 349
-
-
-
-
-
-
-
 
 COUNT TO 150
 USE 1500 LNBIN
-
 _>_=/\/\\\/\\\//= LOAD COUNTER
 +/\+ SET TYPE INTEGER
-|'---'"/\//\/\\/"|_->_=/\\//\/= GOTO END 50 LNBIN
+|'---'"/\//\/\\/"|_->_=/\//\\\= GOTO END 39 LNBIN
 |'---'"/\//\/\\"|+'//+_<_=/\/\\\/\\\///= IF 75 FILL STAR
 |'¬---'"/\//\/\\"|+'//+_<_=/\\\\\/\////= ELSE FILL DASH
 +/\+ SET TYPE INTEGER
 _--_=/\= ADD 1 TO COUNTER
 _<_=/\/\\\/\\\//= STORE IN COUNTER
-_->_=/\///\\= GOTO LNBIN 35
+_->_=/\\/\\= GOTO LNBIN 27
+
+_>_=/\\\\\/\/\\= LOAD 1003
+
+_>_=/\\\\\/\/\\= LOAD 1003
+_--_=/\=
+_<_=/\\\\\/\/\\= SAVE 1003
+|'---'"/\//\/\\/"|_->_=/\\/\//=
+_>_
++¬+_<<_
++/\+_>_=/\\\\\/\/\\=
+_->_=/\//\\\= GOTO 39    
 
 
 
 
 
 
-
-_--_=/\\//\/= ADD 50 TO REACH 200 TOTAL
-_<_=/\/\\\/\\\/\=
++'+_>_=/\\//\///= ADD 50 TO REACH 200 TOTAL
+_<_=/\/\\\/\\\/\=+/\+
 
 
 
@@ -128,7 +128,7 @@ _<_=/\\\////\\/=
 _>_=/\\\////\\/= LOAD POINTER AT K
 _>_ LOAD VALUE AT POINTER
 +>+
-|'---'"/\\\///\//\"|+/\+_->_=/\\/\\\/= GOTO START IF J a
+|'---'"/\\\///\//\"|+/\+_->_=/\\/\\\/= GOTO START IF I IS K
 
 _>_=/\\\////\/\= LOAD VALUE AT J
 _>_ LOAD VALUE AT POINTER
@@ -150,8 +150,8 @@ _->_=/\\/\\\/=
 
 
 
-
-
+DISPLAY ARR2 WITH THIS METHOD
+_<>_
 _>_=/\\\\\/\\/\=
 _--_=/\\//\///=
 _<_=/\/\\\/\\\\/=
@@ -178,6 +178,136 @@ _->_=/\//\\\\\=
 
 
 
+WIPING ARR1
+_>_=/\\\\\/\\/\= RESET COUNTER
+_<_=/\/\\\/\\\//=
 
 
 
+_>_=/\/\\\/\\\//= LOAD COUNTER
++/\+ SET TYPE INTEGER
+|'---'"/\//\/\\/"|_->_=/\\//\///= GOTO END 200 LNBIN
++'//+_<_=/\\\\\/\////= ELSE FILL DASH
++/\+ SET TYPE INTEGER
+_--_=/\= ADD 1 TO COUNTER
+_<_=/\/\\\/\\\//= STORE IN COUNTER
+_->_=/\/\\\//\= GOTO LNBIN 185
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_>_=/\\\\\/\\/\=
+_-_=/\=
+_--_=/\\//\///= ADD 200 TO TARGET ARR2
+_<_=/\/\\\/\\\\/=
+
+
+
+
+
+
+SAME METHOD AS BEFORE
+
+
+_>_=/\/\\\/\\\\/= LOAD X
+_--_=/\=
+_<_=/\/\\\/\\\\/= STORE X
++/\+
+|'---'"/\/\/\\\//"|_->_=/\/////\//= GOTO END OF LOOP
+
+_<_=/\\\////\//=
+
+_>_
+_<_=/\\\///\//\= STORES VALUE OF I AT 905
+_>_=/\\\////\//=
+_--_=/\=
+_<_=/\\\////\/\=
+_--_=/\=
+_<_=/\\\////\\/=
+
+_>_=/\\\////\\/= LOAD POINTER AT K
+_>_ LOAD VALUE AT POINTER
++>+
+|'---'"/\\\///\//\"|+/\+_->_=/\\/\\/\\= GOTO START IF I IS K
+
+_>_=/\\\////\/\= LOAD VALUE AT J
+_>_ LOAD VALUE AT POINTER
+|'¬---'"/\/\\/\"|_->_=/\\/\\/\\= GOTO START IF J IS NOT A DASH
+
+_>_=/\\\////\/\=
+_-_=/\\//\///= TAKES 200 FROM POINTER TO BE STORED IN FIRST ARRAY
++'+
+_<_=/\/\/\/= STORES IN FIRST ARRAY
++/\+
+
+_->_=/\\/\\/\\=
+
+
+
+
+
+
+
+
+
+DISPLAY ARR1 WITH THIS METHOD
+_<>_
+_>_=/\\\\\/\\/\=
+_<_=/\/\\\/\\\\/=
+
+
+
+_>_=/\/\\\/\\\\/=
+|'---'"/\//\/\\/"|_->_=/\///\\///=
+_>_
++¬+
+_<<_
++/\+
+_>_=/\/\\\/\\\\/=
+_--_=/\=
+_<_=/\/\\\/\\\\/=
+_->_=/\////\\//=
+
+
+
+
+
+
+
+
+WIPING ARR2
+_>_=/\\\\\/\\/\= RESET COUNTER
+_--_=/\\//\///= ADD 200 TO POINT TO ARR2
+_<_=/\/\\\/\\\//=
+
+
+
+_>_=/\/\\\/\\\//= LOAD COUNTER
++/\+ SET TYPE INTEGER
+|'---'"/\/\/\\\\/"|_->_=/\//\\///\= GOTO END 305 LNBIN
++'//+_<_=/\\\\\/\////= FILL DASH
++/\+ SET TYPE INTEGER
+_--_=/\= ADD 1 TO COUNTER
+_<_=/\/\\\/\\\//= STORE IN COUNTER
+_->_=/\//\//\/\= GOTO LNBIN 293
+
+
+
+
+
+
+
+
+
+
+_->_=/\/\\/\/=
