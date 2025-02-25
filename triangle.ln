@@ -21,10 +21,10 @@ _<_=/\/\\\/\\\///= store in 3000 lnbin
 _-_=/\/\/\/= take star ascii
 
 
-needs to be 150 long
-_<_=/\/\\\/\\\//= store 0 at 1500 lnbin
+ARR1 NEEDS TO BE 150 LONG
+_<_=/\/\\\/\\\//= STORE 0 AT 1500 LNBIN
 
-
+WRITING ARR1 AND PRINTING
 COUNT TO 150
 USE 1500 LNBIN
 _>_=/\/\\\/\\\//= LOAD COUNTER
@@ -51,9 +51,9 @@ _->_=/\//\\\= GOTO 39
 
 
 
+SET ARR2 TO ONLY DASHES
 
-
-+'+_>_=/\\//\///= ADD 50 TO REACH 200 TOTAL
++'+_>_=/\\//\///= SET ACC 200 TOTAL
 _<_=/\/\\\/\\\/\=+/\+
 
 
@@ -285,7 +285,7 @@ _->_=/\////\\//=
 
 
 
-WIPING ARR2
+WIPING ARR2 BACK TO DASHES
 _>_=/\\\\\/\\/\= RESET COUNTER
 _--_=/\\//\///= ADD 200 TO POINT TO ARR2
 _<_=/\/\\\/\\\//=
@@ -310,4 +310,4 @@ _->_=/\//\//\/\= GOTO LNBIN 293
 
 
 
-_->_=/\/\\/\/=
+_->_=/\/\\/\/= RESET BACK TO LINE 90
