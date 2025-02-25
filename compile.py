@@ -172,10 +172,8 @@ try:
                             print(str(acc),end='',sep='')
 
 
-                    if debug:
-                        print(l, memory, acc, opcode, operand, condition_oper, cond, opr_type)
-                        print('')
-                        time.sleep(5)
+                    
+                        
                         
                 case '<>': #return on next
                     if return_on_next==True:
