@@ -1,4 +1,5 @@
 ![linelang](https://github.com/cardbord/line/blob/main/line_img.png?raw=true)
+# Line
 an esoteric low-level programming language made completely of straight line symbols!
 
 ## well... kind of
