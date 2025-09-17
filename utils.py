@@ -89,7 +89,7 @@ def json_to_c(json_program, ram_size:int = 16384):
                cond_logic = condition.get("logic")
 
                cnum = f"ram[{cond_value}]" if dtype == "RAM" else cond_value
-               conditioncode = f"if ({"!" if cond_logic == "NOT" else ""}(accumulator {cond_opcode} {cnum})) " + " {"
+               conditioncode = f"if ({'!' if cond_logic == 'NOT' else ''}(accumulator {cond_opcode} {cnum})) " + " {"
           
           
           type_change = instr.get("declared_type")
