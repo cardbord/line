@@ -105,7 +105,7 @@ def json_to_c(json_program, ram_size:int = 16384):
 
                case "OUT":
                     print(instr['operand'], dtype)
-                    code = f'printf({'"%d"' if dtype == "INT" else '"%c"'}, {instr['operand'] if (dtype == "CHAR" and instr['operand'] != '') else "accumulator"});'
+                    code = f"printf({'"%d"' if dtype == 'INT' else '"%c"'}, {instr['operand'] if (dtype == 'CHAR' and instr['operand'] != '') else 'accumulator'});"
 
                case "STA":
                     if dtype == "DIRECT":
