@@ -146,7 +146,7 @@ def json_to_c(json_program, ram_size:int = 16384):
                     code = f"goto line{instr['operand']-1};"
 
                case "CLEAR":
-                    code = 'system("clear")'
+                    code = 'system("clear");'
                
                case "RAND":
                     if not has_stdlib_h:
