@@ -1,9 +1,9 @@
 _<_=/= sta zero
-_<<_
-_<>_
-_--_=/\=
-_<<_
-_<>_
+_<<_ output
+_<>_ nl
+_--_=/\= add one
+_<<_ output
+_<>_ 
 _<_=/\= sta one
 
 
@@ -14,10 +14,10 @@ _<_=\= sta temp
 _>_=/\= load one
 _<_=/= sta zero
 
-+>+
-_--_=\=
-+/\+ 
-_<_=/\= sta two
++>+ datatype RAM
+_--_=\= add one from RAM
++/\+ datatype int
+_<_=/\= store in one
 
 _<<_
 _<>_

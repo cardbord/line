@@ -72,7 +72,7 @@ try:
             
             condition_oper = ''.join(condition_oper)
         
-        
+        num:int = 0
         
         operand = list(operand)
         if operand!='':

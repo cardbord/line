@@ -1,0 +1,4 @@
+*.exe
+*.c
+*.json
+__pycache__
