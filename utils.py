@@ -63,7 +63,7 @@ def json_to_c(json_program, ram_size:int = 16384):
      ]
      
      
-     
+     has_stdlib_h = False
 
      dtype = "INT"
      code = ""
@@ -144,7 +144,15 @@ def json_to_c(json_program, ram_size:int = 16384):
 
                case "GOTO":
                     code = f"goto line{instr['operand']-1};"
-                    
+
+               case "CLEAR":
+                    code = 'system("clear")'
+               
+               case "RAND":
+                    if not has_stdlib_h:
+                         has_stdlib_h = True
+                         c_lines.insert(0,"#include <stdlib.h>\n")
+                    code = f"accumulator = rand() % {instr['operand']};"
                
           
                

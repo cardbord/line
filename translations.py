@@ -42,7 +42,9 @@ REV_OPCODES = {
      "OUT":"<<",
      "IN":">>",
      "GOTO":"->",
-     "RETURN":"<>"
+     "RETURN":"<>",
+     "RAND":"/->-/",
+     "CLEAR":"<-/->"
 }
 OPCODES = {v:k for k,v in REV_OPCODES.items()}
 ADDRESSING_MODE = Literal["/\\",">","¬","'//","'"]
