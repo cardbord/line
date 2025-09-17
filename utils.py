@@ -146,7 +146,7 @@ def json_to_c(json_program, ram_size:int = 16384):
           
                
           if conditioncode != "":
-               c_lines.append(f"{label}  {conditioncode}{code + "}"}\n    {next_label}\n")
+               c_lines.append(f"{label}  {conditioncode}{code + '}'}\n    {next_label}\n")
           else:
                c_lines.append(f"{label}    {code}\n    {next_label}\n")
      return c_lines
